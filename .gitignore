@@ -199,3 +199,6 @@ fortune.db
 models/
 logs/
 .DS_Store
+
+# MongoDB
+mongodb_data/

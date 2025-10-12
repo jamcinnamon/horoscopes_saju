@@ -18,8 +18,9 @@ class Settings(BaseSettings):
     api_host: str = "0.0.0.0"
     api_port: int = 8000
     
-    # Database
-    database_url: str = "sqlite:///./fortune.db"
+    # Database - MongoDB
+    mongodb_url: str = "mongodb://localhost:27017"
+    mongodb_db_name: str = "fortune_db"
     
     # OpenAI
     openai_api_key: str = ""

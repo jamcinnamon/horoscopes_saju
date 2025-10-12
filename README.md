@@ -19,7 +19,7 @@
 ## 🛠️ 기술 스택
 
 - **Backend**: FastAPI, Python 3.9+
-- **Database**: SQLite (개발), PostgreSQL (프로덕션)
+- **Database**: MongoDB (Motor + Beanie ODM)
 - **AI/ML**: OpenAI API (GPT-4), scikit-learn, pandas
 - **Testing**: pytest, pytest-asyncio
 
@@ -42,10 +42,23 @@ source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-4. 환경 변수 설정
+4. MongoDB 설치 및 실행
+```bash
+# Windows (Chocolatey)
+choco install mongodb
+
+# macOS (Homebrew)
+brew tap mongodb/brew
+brew install mongodb-community
+
+# MongoDB 실행
+mongod
+```
+
+5. 환경 변수 설정
 ```bash
 cp .env.example .env
-# .env 파일을 열어 OPENAI_API_KEY 등을 설정
+# .env 파일을 열어 OPENAI_API_KEY, MONGODB_URL 등을 설정
 ```
 
 ## 🏃 실행
