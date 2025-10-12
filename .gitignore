@@ -192,3 +192,10 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+# Proje
+ct specific
+fortune.db
+*.db
+models/
+logs/
+.DS_Store
