@@ -12,4 +12,4 @@ num_samples = 1000  # 생성할 데이터 샘플 수
 with open("./data_stars.json", 'r') as f:
     data = json.load(f)
 
-print(data())
+print(data)
