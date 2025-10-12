@@ -222,16 +222,18 @@ async def main():
         print(f"\n📊 Database statistics:")
         print(f"Total horoscope records: {total_count}")
         
-        # Count by zodiac sign
+        # Count by zodiac sign using Motor directly
+        from app.database_mongo import get_database
+        db = get_database()
+        collection = db['horoscopes']
+        
         pipeline = [
             {"$group": {"_id": "$zodiac_sign", "count": {"$sum": 1}}},
             {"$sort": {"_id": 1}}
         ]
         
-        sign_counts = await HoroscopeDocument.aggregate(pipeline).to_list()
-        
         print(f"\nRecords by zodiac sign:")
-        for item in sign_counts:
+        async for item in collection.aggregate(pipeline):
             print(f"  {item['_id']}: {item['count']}")
             
     except Exception as e:
