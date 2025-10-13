@@ -194,6 +194,257 @@ def generate_year_fortune(zodiac_sign: str, saju_info: dict, birth_date: date) -
     return response.choices[0].message.content.strip()
 
 
+def generate_html_output(filename: str, birth_date: date, birth_time: str, zodiac_sign: str,
+                        saju_info: dict, saju_fortune: str, horoscope_today: dict,
+                        year_fortune: str, personality: str, premium: bool):
+    """HTML 형식으로 운세 결과 생성"""
+    시주_display = f", 시주 {saju_info['시주']}" if saju_info.get('시주') else ""
+    birth_time_display = f"<p><strong>⏰ 출생 시간:</strong> {birth_time}</p>" if birth_time else ""
+    
+    html_content = f"""<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>운세 결과 - {format_date_korean(birth_date)}</title>
+    <style>
+        * {{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }}
+        
+        body {{
+            font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            line-height: 1.8;
+        }}
+        
+        .container {{
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }}
+        
+        .header {{
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }}
+        
+        .header h1 {{
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }}
+        
+        .header .subtitle {{
+            font-size: 1.1em;
+            opacity: 0.9;
+        }}
+        
+        .info-section {{
+            background: #f8f9fa;
+            padding: 30px;
+            border-bottom: 3px solid #667eea;
+        }}
+        
+        .info-grid {{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }}
+        
+        .info-card {{
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }}
+        
+        .info-card strong {{
+            color: #667eea;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }}
+        
+        .content {{
+            padding: 40px;
+        }}
+        
+        .fortune-section {{
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+        }}
+        
+        .fortune-section h2 {{
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }}
+        
+        .fortune-section p {{
+            color: #333;
+            font-size: 1.1em;
+            line-height: 2;
+            white-space: pre-wrap;
+        }}
+        
+        .lucky-box {{
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+        }}
+        
+        .lucky-item {{
+            flex: 1;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }}
+        
+        .lucky-item .icon {{
+            font-size: 2em;
+            margin-bottom: 10px;
+        }}
+        
+        .lucky-item .label {{
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }}
+        
+        .lucky-item .value {{
+            color: #667eea;
+            font-size: 1.5em;
+            font-weight: bold;
+        }}
+        
+        .premium-badge {{
+            display: inline-block;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin-left: 10px;
+        }}
+        
+        .footer {{
+            background: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            color: #666;
+            border-top: 3px solid #667eea;
+        }}
+        
+        @media print {{
+            body {{
+                background: white;
+                padding: 0;
+            }}
+            .container {{
+                box-shadow: none;
+            }}
+        }}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>✨ 운세 결과</h1>
+            <p class="subtitle">별자리와 사주가 알려주는 당신의 운명</p>
+        </div>
+        
+        <div class="info-section">
+            <h2 style="color: #667eea; margin-bottom: 20px;">📋 기본 정보</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <strong>📅 생년월일</strong>
+                    <p>{format_date_korean(birth_date)}</p>
+                    {birth_time_display}
+                </div>
+                <div class="info-card">
+                    <strong>♈ 별자리</strong>
+                    <p>{zodiac_sign}</p>
+                </div>
+                <div class="info-card">
+                    <strong>🎴 사주</strong>
+                    <p>년주 {saju_info['년주']}<br>
+                    월주 {saju_info['월주']}<br>
+                    일주 {saju_info['일주']}{시주_display}</p>
+                </div>
+                <div class="info-card">
+                    <strong>🌟 오행</strong>
+                    <p>목: {saju_info['오행']['목']} | 화: {saju_info['오행']['화']}<br>
+                    토: {saju_info['오행']['토']} | 금: {saju_info['오행']['금']}<br>
+                    수: {saju_info['오행']['수']}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="fortune-section">
+                <h2>🔮 오늘의 운세 - 사주 기반</h2>
+                <p>{saju_fortune}</p>
+            </div>
+            
+            <div class="fortune-section">
+                <h2>⭐ 오늘의 운세 - 별자리 기반</h2>
+                <p>{horoscope_today['text']}</p>
+                
+                <div class="lucky-box">
+                    <div class="lucky-item">
+                        <div class="icon">🎲</div>
+                        <div class="label">행운의 숫자</div>
+                        <div class="value">{horoscope_today['lucky_number']}</div>
+                    </div>
+                    <div class="lucky-item">
+                        <div class="icon">🎨</div>
+                        <div class="label">행운의 색</div>
+                        <div class="value">{horoscope_today['lucky_color']}</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="fortune-section">
+                <h2>🌈 {datetime.now().year}년 한 해 운세</h2>
+                <p>{year_fortune}</p>
+            </div>
+            
+            <div class="fortune-section">
+                <h2>💫 내 성향은?{'<span class="premium-badge">프리미엄</span>' if premium else ''}</h2>
+                <p>{personality}</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>생성일시: {datetime.now().strftime('%Y년 %m월 %d일 %H:%M')}</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">이 운세는 AI와 전통 사주학을 결합하여 생성되었습니다.</p>
+        </div>
+    </div>
+</body>
+</html>"""
+    
+    with open(filename, 'w', encoding='utf-8') as f:
+        f.write(html_content)
+
+
 def generate_personality(zodiac_sign: str, saju_info: dict, birth_date: date, premium: bool = False) -> str:
     """OpenAI로 성향 분석 생성"""
     lines = "20줄 이상" if premium else "5-7줄"
@@ -312,6 +563,20 @@ async def generate_complete_fortune(birth_date: date, birth_time: str = None, pr
         f.write(personality + "\n\n")
     
     print(f"✅ 결과가 '{output_file}' 파일로 저장되었습니다!")
+    
+    # HTML 파일 생성
+    html_file = f"운세결과_{birth_date.strftime('%Y%m%d')}.html"
+    generate_html_output(
+        html_file, birth_date, birth_time, zodiac_sign, saju_info,
+        saju_fortune, horoscope_today, year_fortune, personality, premium
+    )
+    print(f"✅ HTML 결과가 '{html_file}' 파일로 저장되었습니다!")
+    
+    # HTML 파일 자동 열기
+    import webbrowser
+    import os
+    webbrowser.open('file://' + os.path.abspath(html_file))
+    print(f"🌐 브라우저에서 결과를 확인하세요!")
 
 
 async def main():
