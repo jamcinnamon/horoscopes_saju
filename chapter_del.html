@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DEL · 같은 얼굴, 다른 가족 — 원리를 보면 나름 재미있는 영어</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<style>
+  :root{
+    --paper:#F5F3EE; --paper-2:#EFEBE2; --ink:#1B2A3A; --ink-soft:#5A6573;
+    --accent:#E15A3C; --accent-soft:#F6DBD0; --teal:#2C6E63; --line:#DED7CA;
+    --kr:"Pretendard Variable",Pretendard,system-ui,sans-serif;
+    --en:"Fraunces",Georgia,serif; --mono:"Space Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--kr);line-height:1.9;-webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(var(--line) 0.6px,transparent 0.6px);background-size:22px 22px;
+    word-break:keep-all}
+  .wrap{max-width:720px;margin:0 auto;padding:0 24px 12vh}
+  .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);display:inline-flex;align-items:center;gap:.6em;margin-top:9vh}
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--accent)}
+  .en{font-family:var(--en);font-weight:600;font-style:italic;white-space:nowrap}
+  .mark{background:linear-gradient(transparent 58%,var(--accent-soft) 58%);padding:0 .05em}
+  p{margin:1em 0;font-size:1.02rem}
+  .muted{color:var(--ink-soft)}
+
+  header{padding-top:4vh}
+  h1{font-family:var(--en);font-weight:500;font-size:clamp(4rem,17vw,6.5rem);line-height:.9;letter-spacing:-2px;margin:2vh 0 1vh}
+  h1 .pl{color:var(--accent);font-style:italic;display:inline-block;transform:rotate(-5deg)}
+  .sub{font-family:var(--kr);font-weight:700;font-size:clamp(1.15rem,4.5vw,1.5rem)}
+  .sub .q{color:var(--ink-soft);font-weight:400}
+
+  h2{font-family:var(--kr);font-weight:800;font-size:clamp(1.25rem,4.6vw,1.6rem);letter-spacing:-.01em;margin:9vh 0 .4em}
+  h2 .h-en{font-family:var(--en);font-style:italic;font-weight:500;color:var(--accent)}
+
+  /* lineup */
+  .lineup{display:flex;flex-wrap:wrap;gap:10px;margin:2em 0}
+  .lineup .tag{font-family:var(--en);font-style:italic;font-weight:600;font-size:1.05rem;background:#fff;border:1px solid var(--line);padding:8px 16px 8px 30px;border-radius:9px;position:relative}
+  .lineup .tag::before{content:"";position:absolute;left:12px;top:50%;transform:translateY(-50%);width:8px;height:8px;border-radius:50%;background:var(--accent)}
+  .lineup .tag small{font-family:var(--kr);font-style:normal;font-weight:400;color:var(--ink-soft);margin-left:.45em;font-size:.82rem}
+
+  /* family card */
+  .fam{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px 24px;margin:2em 0;position:relative;overflow:hidden}
+  .fam .root{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--teal)}
+  .fam .root b{color:var(--accent)}
+  .fam h3{font-family:var(--en);font-style:italic;font-weight:600;font-size:1.6rem;margin:.25em 0 .1em}
+  .fam .core{font-size:.95rem;color:var(--ink-soft);margin-bottom:1em}
+  .fam .core b{color:var(--ink)}
+  .fam ul{list-style:none;margin-top:.6em}
+  .fam li{display:flex;gap:14px;padding:11px 0;border-top:1px dashed var(--line);align-items:baseline}
+  .fam li .w{font-family:var(--en);font-style:italic;font-weight:600;min-width:7.2em;flex:0 0 auto}
+  .fam li .m{font-size:.94rem}
+  .fam li .m small{display:block;color:var(--ink-soft);font-size:.84rem;margin-top:2px}
+  .fam.cousin{border-style:dashed;background:var(--paper-2)}
+
+  /* de- equation */
+  .eq{background:var(--ink);color:var(--paper);border-radius:16px;padding:26px 24px;margin:2em 0;text-align:center}
+  .eq .l{font-family:var(--mono);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+  .eq .big{font-family:var(--en);font-style:italic;font-weight:500;font-size:clamp(1.3rem,5.5vw,1.9rem);margin-top:.5em;line-height:1.45}
+  .eq .big b{color:#F6B0A0;font-weight:600}
+
+  /* example */
+  .ex{border-left:3px solid var(--accent);padding:2px 0 2px 18px;margin:1.4em 0}
+  .ex .l1{font-family:var(--en);font-style:italic;font-size:1.08rem}
+  .ex .l2{font-size:.92rem;color:var(--ink-soft);margin-top:2px}
+
+  .callout{background:#FFF8F5;border:1px solid #eebfae;border-radius:14px;padding:20px 22px;margin:2em 0;font-size:.98rem}
+  .callout b{color:var(--accent)}
+
+  .takeaway{background:var(--paper-2);border:1px solid var(--line);border-radius:16px;padding:26px 24px;margin:9vh 0 0}
+  .takeaway .l{font-family:var(--mono);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+  .takeaway p{font-weight:700;font-size:1.12rem;line-height:1.7;margin:.5em 0 0}
+
+  footer{margin-top:10vh;padding-top:4vh;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--ink-soft);text-transform:uppercase}
+  footer b{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <span class="eyebrow">Chapter · Word Roots</span>
+    <h1>D<span class="pl">EL</span></h1>
+    <div class="sub">같은 얼굴, <span class="q">다른 가족</span></div>
+  </header>
+
+  <p style="margin-top:5vh"><span class="en">delight</span>는 '기쁨', <span class="en">delicious</span>는 '맛있다'. 좋아요, 둘 다 기분 좋은 단어네요. 그런데 <span class="en">delete</span>는 '지우다'고, <span class="en">delay</span>는 '미루다'예요. <span class="muted">어라?</span></p>
+
+  <div class="lineup">
+    <span class="tag">delight<small>기쁨</small></span>
+    <span class="tag">delicious<small>맛있는</small></span>
+    <span class="tag">delete<small>지우다</small></span>
+    <span class="tag">deliver<small>배달하다</small></span>
+    <span class="tag">delay<small>미루다</small></span>
+  </div>
+
+  <p>전부 <span class="en">del</span>로 시작하는데 뜻은 딴판이에요. 단어장으로 외우면 "그냥 다 외워"가 답이겠죠. 근데 원리로 보면 훨씬 재미있는 진실이 나와요 — <strong>철자가 같다고 가족이 아니에요. 가족을 정하는 건 '뿌리'예요.</strong></p>
+
+  <h2>가족 1 — <span class="h-en">delectare</span> 집안: 끌어당겨 기쁘게 하다</h2>
+
+  <p>먼저 진짜 한 집안부터. 라틴어 <span class="en">delectare</span>는 '끌어당겨 기쁘게 하다'라는 뜻이에요. 마음이 끌리는 것, 군침이 도는 것 — 그 느낌이 이 집안의 유전자예요.</p>
+
+  <div class="fam">
+    <div class="root">Root · <b>delectare</b> — 끌어당겨 기쁘게 하다</div>
+    <h3>delight 집안</h3>
+    <div class="core">유전자: <b>'마음이 끌리는 기쁨'</b></div>
+    <ul>
+      <li><span class="w">delight</span><div class="m">기쁨, 즐거움<small>마음이 확 끌리는 그 기쁨</small></div></li>
+      <li><span class="w">delicious</span><div class="m">맛있는<small>혀가 끌리는 기쁨 — 음식으로 간 갈래</small></div></li>
+      <li><span class="w">delectable</span><div class="m">군침 도는<small>delicious의 좀 더 격식 있는 사촌. 메뉴판·광고에서 자주</small></div></li>
+    </ul>
+  </div>
+
+  <div class="fam cousin">
+    <div class="root">사촌으로 추정 · <b>delicatus</b></div>
+    <h3>delicate</h3>
+    <div class="core">'기쁨을 주는' → <b>곱고 여린</b> 쪽으로 번진 단어 <span class="muted">(어원학자들도 "아마 친척"이라고만 해요)</span></div>
+    <ul>
+      <li><span class="w">맛</span><div class="m"><span class="en">a delicate flavor</span><small>은은하고 섬세한 맛</small></div></li>
+      <li><span class="w">질감</span><div class="m"><span class="en">delicate skin</span><small>여리고 고운 피부</small></div></li>
+      <li><span class="w">상황</span><div class="m"><span class="en">a delicate situation</span><small>조심스럽게 다뤄야 할 상황 — 외국계에서 자주!</small></div></li>
+    </ul>
+  </div>
+
+  <p>보이죠? <span class="en">delicate</span> 하나에서도 '기쁨을 주는 고운 것'이라는 <span class="mark">한 느낌이 맛 → 질감 → 상황으로 번져요</span>. OFF에서 '떨어짐' 하나가 취소·이륙·결실로 퍼진 것처럼요. 같은 원리예요.</p>
+
+  <h2>그럼 <span class="h-en">delete · deliver · delay</span>는 뭐냐면</h2>
+
+  <p>여기가 반전이에요. 이 셋의 <span class="en">del</span>은 사실 한 덩어리가 아니라 — <strong>de + 나머지</strong>로 쪼개져요. 그리고 그 <span class="en">de-</span>는 라틴어로 '<span class="mark">떨어져, 멀리(away)</span>'라는 뜻이에요.</p>
+
+  <div class="eq">
+    <div class="l">The Twist</div>
+    <div class="big">de- = <b>떨어져 나감</b><br>…어디서 많이 본 그림이죠? 네, <b>OFF</b>예요.</div>
+  </div>
+
+  <p>앞 장에서 본 <span class="en">off</span>의 '떨어짐' — 그 그림이 라틴어 쪽에선 <span class="en">de-</span>로 나타나요. 영어는 게르만 혈통(<span class="en">off</span>)과 라틴 혈통(<span class="en">de-</span>)이 섞인 언어라서, <strong>같은 그림이 두 혈통에서 반복</strong>돼요. 그래서 이 셋은 이렇게 풀려요.</p>
+
+  <div class="fam">
+    <div class="root">de(떨어져) + <b>linere</b>(문지르다)</div>
+    <h3>delete</h3>
+    <div class="core">밀랍 서판을 <b>문질러서 없애다</b> → 지우다</div>
+    <ul>
+      <li><span class="w">그림</span><div class="m">고대 로마인은 밀랍판에 글을 썼어요. 문지르면 → 사라짐<small>2천 년 전의 '삭제 버튼'이 오늘 키보드에 남아 있는 거예요</small></div></li>
+    </ul>
+  </div>
+
+  <div class="fam">
+    <div class="root">de(떨어져) + <b>liberare</b>(자유롭게 하다)</div>
+    <h3>deliver</h3>
+    <div class="core">붙잡힌 것을 <b>풀어서 내보내다</b> → 건네다 → 배달하다</div>
+    <ul>
+      <li><span class="w">원래 뜻</span><div class="m">구하다, 해방하다<small>liber(자유) — liberty, liberal이 이 집안 식구예요</small></div></li>
+      <li><span class="w">번진 뜻</span><div class="m">손에서 놓아 건네다 → 배달, (연설을) 하다, (아기를) 받다</div></li>
+      <li><span class="w">외국계 ✓</span><div class="m"><span class="en">We need to deliver on this promise.</span><small>약속한 걸 '해내다' — 미팅에서 진짜 자주 들려요</small></div></li>
+    </ul>
+  </div>
+
+  <div class="fam">
+    <div class="root">de(떨어져) + <b>laier</b>(내버려 두다)</div>
+    <h3>delay</h3>
+    <div class="core">일을 <b>떼어서 내버려 두다</b> → 미루다</div>
+    <ul>
+      <li><span class="w">그림</span><div class="m">할 일을 옆으로 툭 떼어놓고 놔둠<small>느슨하게 풀어둔다(lax)는 뿌리와 이어진다고 봐요 — relax의 그 lax!</small></div></li>
+    </ul>
+  </div>
+
+  <div class="ex"><div class="l1">The flight was delayed, so they delivered the news gently.</div><div class="l2">비행기가 미뤄져서, 그 소식을 조심스럽게 전했다 — 한 문장에 두 가족.</div></div>
+
+  <div class="callout"><b>주의 한 줄</b> — 그러니까 "del = 기쁨"처럼 철자로 규칙을 만들면 안 돼요. <span class="en">delete</span>에서 바로 무너지거든요. 가족인지 아닌지는 철자가 아니라 <b>뿌리의 느낌</b>으로 갈라요. 이 감별력이 생기면, 단어장이 필요 없어져요.</div>
+
+  <h2>정리 — 한 그림이 언어를 가로지른다</h2>
+
+  <p>오늘 본 걸 겹쳐 보면 이래요. <span class="en">delight</span> 집안은 '끌림'이라는 한 뿌리에서 기쁨·맛·고움으로 번졌고, <span class="en">delete·deliver·delay</span>는 각자 다른 뿌리인데 셋 다 <span class="en">de-</span>, 즉 '떨어짐'을 업고 있어요. 그리고 그 '떨어짐'은 우리가 이미 아는 <span class="en">OFF</span>의 그림이에요.</p>
+
+  <div class="takeaway">
+    <div class="l">이 장의 한 문장</div>
+    <p>철자가 아니라 뿌리가 가족을 정한다. 그리고 '떨어짐' 같은 큰 그림은 혈통을 넘어 반복된다 — <span class="en" style="font-weight:600">off</span>로도, <span class="en" style="font-weight:600">de-</span>로도.</p>
+  </div>
+
+  <footer>
+    <span>원리를 보면 <b>나름 재미있는 영어</b></span>
+    <span>DEL</span>
+  </footer>
+
+</div>
+</body>
+</html>
